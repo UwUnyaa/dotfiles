@@ -1,0 +1,34 @@
+#+TITLE: UwUnyaa's dotifiles
+
+This repository contains some of my dotfiles. Certain ones make no sense to be
+contained within this repo, for example suckless software.
+
+The following scripts handle setting up symlinks outside of the repository.
+They're intended for use with GNU bash and GNU stow.
+
+Config files are located within the =home= directory of the repo, which is
+matching where they will be symlinked to, including their subdirectories.
+
+* These tools have dotfiles in this repo:
+- =startx= (=~/.xinitrc=)
+- =dunst=
+- =foot=
+- =kvantum=
+- GNU =bash=
+- GNU =readline=
+- =GIMP=
+- =lxterminal=
+- =pcmanfm=
+- =zeal=
+- =htop=
+
+* Installing:
+Just run
+#+begin_src sh
+  ./install
+#+end_src
+
+The script is written in GNU bash and depends on GNU stow to run. In case
+you're on arch, the package's names are simply =bash= and =stow=. Both are GNU
+software, so they should be to install or even build from source on just about
+anything.
