@@ -32,3 +32,15 @@ The script is written in GNU bash and depends on GNU stow to run. In case
 you're on arch, the package's names are simply =bash= and =stow=. Both are GNU
 software, so they should be to install or even build from source on just about
 anything.
+
+* etc dotfiles
+There's also some files in the =etc= directory, which are likely to be machine
+specific. I'm intentionally not providing a way to install them, as they
+should likely be copied over as necessary and potentially modified.
+
+These pieces of software have dotfiles in etc:
+- =X11=
+- =tlp=
+- =inputrc= (default arch file, might be usable somewhere)
+- =keyd=
+
