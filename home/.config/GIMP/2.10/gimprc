@@ -1,4 +1,4 @@
-# GIMP gimprc -*- mode: scheme -*-
+# GIMP gimprc
 # 
 # This is your personal gimprc file.  Any variable defined in this file takes
 # precedence over the value defined in the system-wide gimprc:
@@ -10,8 +10,8 @@
 (undo-size 2G)
 (import-add-alpha yes)
 (import-raw-plug-in "${gimp_plug_in_dir}/plug-ins/file-raw-placeholder/file-raw-placeholder")
-(monitor-xresolution 90)
-(monitor-yresolution 91)
+(monitor-xresolution 157)
+(monitor-yresolution 161)
 (default-view
     (show-menubar no)
     (show-statusbar yes)

@@ -1,2 +1,5 @@
-home/.config/GIMP/2.10/*
-home/.config/pcmanfm/default/pcmanfm.conf
+/home/.config/GIMP/2.10/action-history
+/home/.config/GIMP/2.10/controllerrc
+/home/.config/GIMP/2.10/devicerc
+/home/.config/GIMP/2.10/menurc
+/home/.config/pcmanfm/default/pcmanfm.conf
