@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# babysit chromium va-api support
+export LIBVA_DRIVER_NAME=iHD
+
+# babysit java apps
+export _JAVA_AWT_WM_NONPARENTING=1
+
+# prefer dark themes
+export GTK_THEME=Adwaita:dark
+export QT_STYLE_OVERRIDE=kvantum
+
+export XCURSOR_SIZE=1
+export QT_QPA_PLATFORM=wayland
+
+# fix up GTK3 decorations
+export GTK_CSD=0
+
+# babysit xdg-dekstop-portal-wlr
+export XDG_CURRENT_DESKTOP=river
+
+exec river

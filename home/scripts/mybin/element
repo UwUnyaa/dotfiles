@@ -1,0 +1,2 @@
+#!/bin/bash
+exec element-desktop --ozone-platform-hint=auto

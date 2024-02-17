@@ -1,0 +1,4 @@
+#!/bin/bash
+for battery in /sys/class/power_supply/BAT*; do
+    echo "$(basename "$battery"): $(cat "${battery}"/capacity)%"
+done

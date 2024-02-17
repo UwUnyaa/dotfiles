@@ -21,6 +21,27 @@ matching where they will be symlinked to, including their subdirectories.
 - =pcmanfm=
 - =zeal=
 - =htop=
+- =river=
+- =rivercarro=
+
+* Dependencies:
+Make sure you have the following working to get the full experience:
+- =river=
+- =rivercarro=
+- =grim=
+- =slurp=
+- =wl-clipboard=
+- =xdg-desktop-portal-wlr=
+- GNOME polkit agent
+
+In case you're using the X11 screenshot scripts:
+- =scrot=
+- =maim=
+- =slop=
+- =xclip=
+
+Also, make sure your sudorders is set up to not prompt for a password, some of
+my setup depends on it, and might need adjuestments otherwise.
 
 * Installing:
 Just run

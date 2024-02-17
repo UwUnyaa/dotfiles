@@ -1,0 +1,148 @@
+#!/bin/bash
+
+# set the modifier
+mod=Super
+
+# set up variables with programs to spawn in binds
+term="foot"
+menu="dmenu_run"
+browser="firefox"
+emacsclient='emacsclient -nc -a ''"''"'
+fileManager="pcmanfm-qt"
+taskManager="$term -e htop"
+screenLocker='waylock -init-color 0x000000 -input-color 0x005577 -fail-color 0xCC3333 -ignore-empty-password'
+
+volumeup="amixer set Master 5%+"
+volumedown="amixer set Master 5%-"
+volumetoggle="amixer set Master toggle"
+mictoggle="amixer set Capture toggle"
+
+shutdown="sudo shutdown now"
+
+# spawn binds
+riverctl map normal $mod Return spawn $term
+riverctl map normal $mod C spawn "$browser"
+riverctl map normal $mod M spawn "$emacsclient"
+riverctl map normal $mod Escape spawn "$taskManager"
+riverctl map normal $mod P spawn "$menu"
+riverctl map normal $mod E spawn "$fileManager"
+riverctl map normal $mod+Shift L spawn "$screenLocker"
+riverctl map normal Alt+Shift F4 spawn "$shutdown"
+
+# screenshot binds
+riverctl map normal None Print spawn ~/scripts/screenshot-wayland/screen.sh
+riverctl map normal Control Print spawn ~/scripts/screenshot-wayland/region.sh
+
+# close the focused view
+riverctl map normal $mod+Shift C close
+
+# exit river
+riverctl map normal $mod+Shift Q exit
+
+# $mod+J and $mod+K to focus the next/previous view in the layout stack
+riverctl map normal $mod J focus-view next
+riverctl map normal $mod K focus-view previous
+
+# $mod+Period and $mod+Comma to focus the next/previous output
+riverctl map normal $mod Period focus-output next
+riverctl map normal $mod Comma focus-output previous
+
+# $mod+Shift+{Period,Comma} to send the focused view to the next/previous output
+riverctl map normal $mod+Shift Period send-to-output next
+riverctl map normal $mod+Shift Comma send-to-output previous
+
+# $mod+Return to bump the focused view to the top of the layout stack
+riverctl map normal $mod S zoom
+
+# $mod+H and $mod+L to decrease/increase the main ratio of rivercarro(1)
+riverctl map normal $mod H send-layout-cmd rivercarro "main-ratio -0.05"
+riverctl map normal $mod L send-layout-cmd rivercarro "main-ratio +0.05"
+
+# $mod+I and $mod+d to increment/decrement the main count of rivercarro(1)
+riverctl map normal $mod+Shift I send-layout-cmd rivercarro "main-count +1"
+riverctl map normal $mod+Shift D send-layout-cmd rivercarro "main-count -1"
+
+# $mod + Left Mouse Button to move views
+riverctl map-pointer normal $mod BTN_LEFT move-view
+
+# $mod + Right Mouse Button to resize views
+riverctl map-pointer normal $mod BTN_RIGHT resize-view
+
+# $mod + Middle Mouse Button to toggle float
+riverctl map-pointer normal $mod BTN_MIDDLE toggle-float
+
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+
+    # $mod+[1-9] to focus tag [0-8]
+    riverctl map normal $mod $i set-focused-tags $tags
+
+    # $mod+Shift+[1-9] to tag focused view with tag [0-8]
+    riverctl map normal $mod+Shift $i set-view-tags $tags
+
+    # $mod+Control+[1-9] to toggle focus of tag [0-8]
+    riverctl map normal $mod+Control $i toggle-focused-tags $tags
+
+    # $mod+Shift+Control+[1-9] to toggle tag [0-8] of focused view
+    riverctl map normal $mod+Shift+Control $i toggle-view-tags $tags
+done
+
+# $mod+0 to focus all tags
+# $mod+Shift+0 to tag focused view with all tags
+all_tags=$(((1 << 32) - 1))
+riverctl map normal $mod 0 set-focused-tags $all_tags
+riverctl map normal $mod+Shift 0 set-view-tags $all_tags
+
+# $mod+Space to toggle float
+riverctl map normal $mod+Shift Space toggle-float
+
+# toggle layouts
+riverctl map normal $mod+Shift M send-layout-cmd rivercarro "main-location monocle"
+riverctl map normal $mod+Shift T send-layout-cmd rivercarro "main-location left"
+riverctl map normal $mod Space send-layout-cmd rivercarro "main-location left"
+
+# Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
+riverctl map normal None XF86AudioRaiseVolume  spawn "$volumeup"
+riverctl map normal None XF86AudioLowerVolume  spawn "$volumedown"
+riverctl map normal None XF86AudioMute         spawn "$volumetoggle"
+riverctl map normal None XF86XKAudioMicMute    spawn "$mictoggle"
+
+# Control screen backlight brightness with light (https://github.com/haikarainen/light)
+riverctl map normal None XF86MonBrightnessUp   spawn 'light -A 5'
+riverctl map normal None XF86MonBrightnessDown spawn 'light -U 5'
+
+riverctl focus-follows-cursor normal
+
+# disable the touchpad
+riverctl input "pointer-1739-0-Synaptics_TM3276-022" events disabled
+
+# TODO: add missing input settings for mice and so-on
+
+# Set background and disable borders
+riverctl background-color 0x000000
+riverctl border-width 0
+
+# Set keyboard repeat rate
+riverctl set-repeat 50 300
+riverctl keyboard-layout -options ctrl:nocaps,shift:both_capslock pl
+
+# Make all views with an app-id that starts with "float" and title "foo" start floating.
+riverctl rule-add -app-id 'float*' -title 'foo' float
+
+# Make all views with app-id "bar" and any title use client-side decorations
+riverctl rule-add ssd
+
+# Set the default layout generator to be rivercarro and start it.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl default-layout rivercarro
+
+# portal stuff
+systemctl --user set-environment XDG_CURRENT_DESKTOP=river
+systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY XDG_CURRENT_DESKTOP=river WAYLAND_DISPLAY
+
+# spawn stuff
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dunst &
+exec rivercarro -inner-gaps 0 -outer-gaps 0 -main-ratio 0.5
