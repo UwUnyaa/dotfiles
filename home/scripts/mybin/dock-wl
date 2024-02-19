@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Set up my dock displays in a sane way. This should work on any wlroots-based
+# window manager.
+wlr-randr --output DP-3 --pos -1920,0
+wlr-randr --output DP-4 --pos 1920,0

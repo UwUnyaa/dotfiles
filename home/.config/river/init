@@ -117,7 +117,14 @@ riverctl focus-follows-cursor normal
 # disable the touchpad
 riverctl input "pointer-1739-0-Synaptics_TM3276-022" events disabled
 
-# TODO: add missing input settings for mice and so-on
+# set to sane acceleration profiles
+riverctl input "pointer-11944-8707-Wings_Tech_Xtrfy_M42" accel-profile none
+riverctl input "pointer-11944-8707-Wings_Tech_Xtrfy_M42" pointer-accel 0
+riverctl input "pointer-1241-1031-USB-HID_Keyboard_Mouse" accel-profile none
+riverctl input "pointer-1241-1031-USB-HID_Keyboard_Mouse" pointer-accel -0.6
+
+# disable the keyboard on my headset
+riverctl input "keyboard-2385-5869-Kingston_HyperX_Cloud_Alpha_S_Consumer_Control" events disabledh
 
 # Set background and disable borders
 riverctl background-color 0x000000
