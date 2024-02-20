@@ -2,5 +2,11 @@
 
 # Set up my dock displays in a sane way. This should work on any wlroots-based
 # window manager.
-wlr-randr --output DP-3 --pos -1920,0
-wlr-randr --output DP-4 --pos 1920,0
+
+# Setting position of the leftmost monitor to 0,0 fixes a bug with chromium
+# where clicks on a monitor with negative coordinates break, at least on
+# river.
+
+wlr-randr --output DP-3  --pos 0,0
+wlr-randr --output eDP-1 --pos 1920,0
+wlr-randr --output DP-4  --pos 3840,0
