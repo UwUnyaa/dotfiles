@@ -7,6 +7,10 @@
 # where clicks on a monitor with negative coordinates break, at least on
 # river.
 
-wlr-randr --output DP-3  --pos 0,0
+function getMonitorByModel () {
+    wlr-randr --json | jq -r '.[] | select(.model == "'"$1"'") | .name'
+}
+
+wlr-randr --output $(getMonitorByModel "EA244WMi") --pos 0,0
 wlr-randr --output eDP-1 --pos 1920,0
-wlr-randr --output DP-4  --pos 3840,0
+wlr-randr --output $(getMonitorByModel "EA244WMi")  --pos 3840,0
