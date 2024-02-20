@@ -69,6 +69,11 @@ These pieces of software have dotfiles in etc:
 - =inputrc= (default arch file, might be usable somewhere)
 - =keyd=
 
+* Templates
+The =templates= directory contains example scripts that are too specific for
+to be version controlled. In a way, it's similar to the =etc= directory, but
+with it representing =~=.
+
 * Useful commands
 It might be worth trying out these commands:
 

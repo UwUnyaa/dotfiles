@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This is a hack specific to my flaky T480 TrackPoint that gets initialized
+# late and has inconsistent sysfs paths.
+
+# This script is meant to set up the TrackPoint device. Normally, this sort of
+# thing would be done with udev rules, but the device doesn't get initialized
+# at a normal time.
+
+# This script can be only ran as root
+if [ "$EUID" -ne 0 ]
+  then echo "This script can only run as root"
+  exit
+fi
+
+# This is an ugly hack, but it turns out the TrackPoint device path isn't
+# stable. The reason as to why is not known yet.
+trackpoint=$(dirname $(find /sys/devices -type f -name press_to_select))
+
+# sysfs knobs
+echo 255 > $trackpoint/speed
+echo 200 > $trackpoint/rate
+echo 255 > $trackpoint/sensitivity
+echo 3 > $trackpoint/inertia
+
+# libinput (X11 only, but will just error out on Wayland with no issues)
+xinput set-prop  "TPPS/2 IBM TrackPoint" "libinput Scrolling Pixel Distance" 40
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.20
