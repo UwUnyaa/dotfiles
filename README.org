@@ -1,4 +1,4 @@
-#+TITLE: UwUnyaa's dotifiles
+#+TITLE: UwUnyaa's dotfiles
 
 This repository contains some of my dotfiles. Certain ones make no sense to be
 contained within this repo, for example suckless software.
@@ -42,7 +42,7 @@ In case you're using the X11 screenshot scripts:
 - =xclip=
 
 Also, make sure your sudorders is set up to not prompt for a password, some of
-my setup depends on it, and might need adjuestments otherwise.
+my setup depends on it, and might need adjustments otherwise.
 
 * Installing:
 Just run
