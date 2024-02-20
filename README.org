@@ -66,3 +66,15 @@ These pieces of software have dotfiles in etc:
 - =inputrc= (default arch file, might be usable somewhere)
 - =keyd=
 
+* Useful commands
+It might be worth trying out these commands:
+
+#+begin_src sh
+gsettings set org.gnome.desktop.interface font-name 'DejaVu Sans Mono 9'
+#+end_src
+This sets the default font in newer versions of GTK, especially on Wayland.
+
+#+begin_src sh
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+#+end_src
+This enables dark mode under Wayland (xdg-desktop-portal implementations read this).
