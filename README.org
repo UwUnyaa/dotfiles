@@ -23,6 +23,9 @@ matching where they will be symlinked to, including their subdirectories.
 - =htop=
 - =river=
 - =rivercarro=
+- =chromium= (to enable VA-API)
+- =inkscape=
+- =git=
 
 * Dependencies:
 Make sure you have the following working to get the full experience:
