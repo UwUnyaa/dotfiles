@@ -11,9 +11,6 @@ function getMonitorByModel () {
     wlr-randr --json | jq -r '.[] | select(.model == "'"$1"'") | .name'
 }
 
-# This seems to not work properly and needs extra testing to be consistent
-# between machines and so on.
-
-wlr-randr --output '"'$(getMonitorByModel "MSI NXG253R")'"' --pos 0,0
-wlr-randr --output eDP-1                                    --pos 1920,0
-wlr-randr --output '"'$(getMonitorByModel "EA244WMi")'"'    --pos 3840,0
+wlr-randr --output $(getMonitorByModel "MSI NXG253R") --pos 0,0
+wlr-randr --output eDP-1                              --pos 1920,0
+wlr-randr --output $(getMonitorByModel "EA244WMi")    --pos 3840,0
