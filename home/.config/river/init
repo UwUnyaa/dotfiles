@@ -39,6 +39,9 @@ riverctl map normal $mod+Shift C close
 # exit river
 riverctl map normal $mod+Shift Q exit
 
+# kill Xwayland to force a restart of it
+riverctl map normal $mod+Shift R spawn "killall -9 Xwayland"
+
 # $mod+J and $mod+K to focus the next/previous view in the layout stack
 riverctl map normal $mod J focus-view next
 riverctl map normal $mod K focus-view previous
