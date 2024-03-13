@@ -1,0 +1,17 @@
+#!/bin/bash
+
+case $1 in
+    "up")
+        sudo systemctl start tailscaled
+        sudo tailscale up
+        ;;
+    "down")
+        sudo tailscale down
+        sudo systemctl stop tailscaled
+        ;;
+    *)
+        echo "Usage:"
+        echo "	$(basename "$0") [up|down]"
+        exit 1
+        ;;
+esac
