@@ -2,12 +2,10 @@
 
 case $1 in
     "up")
-        sudo systemctl start tailscaled
-        sudo tailscale up
+        sudo systemctl start tailscaled && sudo tailscale up
         ;;
     "down")
-        sudo tailscale down
-        sudo systemctl stop tailscaled
+        sudo tailscale down && sudo systemctl stop tailscaled
         ;;
     *)
         echo "Usage:"
