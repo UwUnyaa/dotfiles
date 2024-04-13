@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# babysit chromium va-api support
-export LIBVA_DRIVER_NAME=iHD
-
 # babysit java apps
 export _JAVA_AWT_WM_NONPARENTING=1
 
