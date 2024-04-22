@@ -4,7 +4,7 @@
 
 export PATH=$PATH:/home/user/scripts/mybin
 export HISTSIZE=10000
-export HISEFILESIZE=10000
+export HISTFILESIZE=10000
 
 if [ -z "$DISPLAY" ]; then
     case $XDG_VTNR in
