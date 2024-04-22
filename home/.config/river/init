@@ -125,8 +125,8 @@ riverctl input "pointer-11944-8707-Wings_Tech_Xtrfy_M42" accel-profile none
 riverctl input "pointer-11944-8707-Wings_Tech_Xtrfy_M42" pointer-accel 0
 riverctl input "pointer-1241-1031-USB-HID_Keyboard_Mouse" accel-profile none
 riverctl input "pointer-1241-1031-USB-HID_Keyboard_Mouse" pointer-accel -0.6
-riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" accel-profile none
-riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" pointer-accel -0.6
+riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" accel-profile adaptive
+riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" pointer-accel -0.3
 
 # disable the keyboard on my headset
 riverctl input "keyboard-2385-5869-Kingston_HyperX_Cloud_Alpha_S_Consumer_Control" events disabledh
